@@ -43,7 +43,8 @@ public class Application
 	{
 		channel.sendMessage(user.getAsMention() + " you application has been canceled due to inactivity. Please make a new application if you intend on applying.").queue();
 		valorous.getApplicationHandler().removeApplicationByChannelId(channel.getIdLong());
-		channel.delete().queueAfter(10, TimeUnit.SECONDS, null, error -> {});
+		channel.delete().queueAfter(10, TimeUnit.SECONDS, null, error ->
+		{});
 	}
 
 	public void addAnswer(ApplicationQuestion question, String answer)

@@ -2,7 +2,6 @@ package me.arynxd.valorous.commands;
 
 import java.util.EnumSet;
 import me.arynxd.valorous.Valorous;
-import me.arynxd.valorous.entities.application.Application;
 import me.arynxd.valorous.entities.command.Command;
 import me.arynxd.valorous.entities.command.CommandEvent;
 import me.arynxd.valorous.entities.config.ConfigOption;

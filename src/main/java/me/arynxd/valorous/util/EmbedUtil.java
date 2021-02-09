@@ -11,8 +11,9 @@ import net.dv8tion.jda.api.entities.MessageChannel;
 
 public class EmbedUtil
 {
-	private EmbedUtil() { }
 	private static long errorCount = 0;
+
+	private EmbedUtil() { }
 
 	public static void sendError(CommandEvent event, String message)
 	{
@@ -50,6 +51,7 @@ public class EmbedUtil
 				.setDescription(message)
 				.setColor(Color.GREEN)
 				.build()).delay(10, TimeUnit.SECONDS)
-				.flatMap(Message::delete).queue(null, error -> {});
+				.flatMap(Message::delete).queue(null, error ->
+		{});
 	}
 }

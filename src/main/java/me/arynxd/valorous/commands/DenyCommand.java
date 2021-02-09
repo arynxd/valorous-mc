@@ -34,6 +34,7 @@ public class DenyCommand extends Command
 		}
 
 		event.getValorous().getApplicationHandler().removeApplicationByChannelId(event.getChannel().getIdLong());
-		event.getTextChannel().delete().queue(null, error -> {});
+		event.getTextChannel().delete().queue(null, error ->
+		{});
 	}
 }

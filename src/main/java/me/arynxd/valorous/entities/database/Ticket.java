@@ -1,6 +1,8 @@
 package me.arynxd.valorous.entities.database;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import me.arynxd.valorous.Valorous;
 
 public class Ticket
@@ -12,32 +14,6 @@ public class Ticket
 	{
 		this.userId = userId;
 		this.channelId = channelId;
-	}
-
-	public long getUserId()
-	{
-		return userId;
-	}
-
-	public long getChannelId()
-	{
-		return channelId;
-	}
-
-
-	public void close(Valorous valorous)
-	{
-		try(Connection connection = valorous.getDatabaseHandler().getConnection())
-		{
-			PreparedStatement ps = connection.prepareStatement("DELETE FROM tickets WHERE channel_id = ?;");
-			ps.setLong(1, channelId);
-			ps.execute();
-		}
-		catch(Exception exception)
-		{
-			System.out.println("An SQL error occurred");
-			exception.printStackTrace();
-		}
 	}
 
 	public static Ticket getByChannelId(long channelId, Valorous valorous)
@@ -79,28 +55,49 @@ public class Ticket
 		}
 	}
 
-	public static Ticket createTicket(long userId, long channelId, Valorous valorous)
+	public static void createTicket(long userId, long channelId, Valorous valorous)
 	{
-		Ticket ticket = new Ticket(userId, channelId);
-
 		try(Connection connection = valorous.getDatabaseHandler().getConnection())
 		{
 			if(hasTicket(userId, valorous))
 			{
-				return null;
+				return;
 			}
 
 			PreparedStatement ps = connection.prepareStatement("INSERT INTO tickets (user_id, channel_id) VALUES (?, ?);");
 			ps.setLong(1, userId);
 			ps.setLong(2, channelId);
 			ps.executeUpdate();
-			return ticket;
 		}
 		catch(Exception exception)
 		{
 			System.out.println("An SQL error occurred");
 			exception.printStackTrace();
-			return null;
+		}
+	}
+
+	public long getUserId()
+	{
+		return userId;
+	}
+
+	public long getChannelId()
+	{
+		return channelId;
+	}
+
+	public void close(Valorous valorous)
+	{
+		try(Connection connection = valorous.getDatabaseHandler().getConnection())
+		{
+			PreparedStatement ps = connection.prepareStatement("DELETE FROM tickets WHERE channel_id = ?;");
+			ps.setLong(1, channelId);
+			ps.execute();
+		}
+		catch(Exception exception)
+		{
+			System.out.println("An SQL error occurred");
+			exception.printStackTrace();
 		}
 	}
 }
