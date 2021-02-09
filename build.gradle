@@ -1,0 +1,22 @@
+plugins {
+    id'java'
+    id'application'
+    id'com.github.johnrengelman.shadow' version '6.0.0'
+}
+mainClassName = 'me.arynxd.valorous.Main'
+version '1.0'
+
+sourceCompatibility = 14
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation 'net.dv8tion:JDA:4.2.0_227'
+    implementation 'com.jagrosh:jda-utilities:3.0.5'
+    implementation 'com.zaxxer:HikariCP:4.0.1'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.1.2'
+}
+
+compileJava.options.encoding = 'UTF-8'

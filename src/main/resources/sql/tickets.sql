@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS tickets
+(
+    channel_id BIGINT NOT NULL PRIMARY KEY,
+    user_id BIGINT NOT NULL
+);
