@@ -7,19 +7,16 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import me.arynxd.valorous.Valorous;
 import me.arynxd.valorous.entities.config.ConfigOption;
 
 public class ConfigHandler
 {
 	public static final File CONFIG_FOLDER = new File("config");
 	public static final File CONFIG_FILE = new File(CONFIG_FOLDER, "bot.cfg");
-	private final Valorous valorous;
 	private final List<ConfigurationValue> configValues;
 
-	public ConfigHandler(Valorous valorous)
+	public ConfigHandler()
 	{
-		this.valorous = valorous;
 		initFolder();
 		initFile();
 		this.configValues = loadInitialValues();

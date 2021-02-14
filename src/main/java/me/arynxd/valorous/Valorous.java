@@ -24,7 +24,7 @@ public class Valorous
 
 	public Valorous()
 	{
-		this.configHandler = new ConfigHandler(this);
+		this.configHandler = new ConfigHandler();
 		this.commandHandler = new CommandHandler(this);
 		this.databaseHandler = new DatabaseHandler(this);
 		this.eventWaiter = new EventWaiter();
